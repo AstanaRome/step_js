@@ -1,5 +1,11 @@
-console.log('vert');
+const axios = require('axios');
+const cat = document.getElementById('cat');
 
-const buf = document.getElementById('temp');
 
-buf.style.backgroundColor = 'pink';
+axios.get('https://aws.random.cat/meow')
+
+.then(response => {
+const data = response.data.file;
+console.log(data);
+cat.src = data;
+})
