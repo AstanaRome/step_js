@@ -2,6 +2,7 @@ module.exports = {
     devServer: {
         port: 8080,
         compress: true,
+        hot: true,
         static: {
             directory: './public',
         },
