@@ -14,6 +14,11 @@ module.exports = {
     output: {
         filename: 'js/app.js'
     },
+
+    resolve: {
+        extensions: ['.js', '.vue']
+    },
+
     module: {
         rules: [
             {
