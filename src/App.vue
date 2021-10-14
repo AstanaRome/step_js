@@ -11,13 +11,13 @@
 <script>
 import axios from 'axios'
 export default {
-  image: {
+  data: 
     function() {
          return  {
            image: 'https://purr.objects-us-east-1.dream.io/i/2n5E8yZ.jpg'
          }
     },
-  },
+  
 
   methods: {
     getImage() {
