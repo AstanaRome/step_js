@@ -1,5 +1,5 @@
-<div id="app" v-bind:style="myStyle" >
-    <button id="btn1" width="100" height="50" @click="getImage">Change</button>
+<div id="app" :style="myStyle" v-bind:style="myStyle" >
+    <button  id="btn1" v-bind:style="styleObject" width="100" height="50" @click="getImage">Change</button>
     <h2>Image:</h2>
     <img v-bind:src="image"  alt="">
   </div>

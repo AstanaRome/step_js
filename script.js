@@ -8,12 +8,11 @@ const app = new Vue({
     el: "#app",
     data: {
         image: null,
-        return: {
-            myStyle: {
-                backgroundColor: "#16a085"
-            }
-
-        }
+        styleObject: {
+            color: 'blue',
+            fontSize: '20px'
+          }
+     
     },
     methods: {
         getImage() {
