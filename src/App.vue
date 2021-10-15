@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <button @click="getImage">Change</button>
+    <button class="btn1" @click="getImage">Change</button>
     <h2>Image:</h2>
 
     <img v-bind:src="image" alt="" />
@@ -9,15 +9,13 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  data: 
-    function() {
-         return  {
-           image: 'https://purr.objects-us-east-1.dream.io/i/2n5E8yZ.jpg'
-         }
-    },
-  
+  data: function () {
+    return {
+      image: "https://purr.objects-us-east-1.dream.io/i/2n5E8yZ.jpg",
+    };
+  },
 
   methods: {
     getImage() {
@@ -31,3 +29,10 @@ export default {
 };
 </script>
 
+<style scoped>
+.btn1 {
+  font-size: 20px;
+  color: white;
+  background-color: black;
+}
+</style>
