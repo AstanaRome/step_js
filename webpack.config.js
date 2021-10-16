@@ -16,7 +16,8 @@ module.exports = {
 
 
     resolve: {
-        extensions: ['.js', '.vue'],
+        extensions: ['.js', '.vue', '.json', '.scss'],
+        
     },
 
     module: {
@@ -33,7 +34,42 @@ module.exports = {
                     'vue-style-loader',
                     'css-loader'
                 ]
-            }
+            },
+            {
+                test: /\.sass$/,
+                use: [
+                  'vue-style-loader',
+                  'css-loader',
+                  {
+                    loader: 'sass-loader',
+                    options: {
+                      indentedSyntax: true,
+                      // sass-loader >= 8
+                      sassOptions: {
+                        indentedSyntax: true
+                      }
+                    }
+                  }
+                ]
+              },
+
+              {
+                test: /\.scss$/,
+                use: [
+                  'vue-style-loader',
+                  'css-loader',
+                  {
+                    loader: 'sass-loader',
+                    options: {
+                      // вы можете также указать файл, например `variables.scss`
+                      // используйте свойство `prependData` здесь, если версия sass-loader = 8
+                      // используйте свойство `data` здесь, если версия sass-loader < 8
+                      additionalData: `$color: red;`
+                    }
+                  }
+                ]
+              }
+
 
         ]
     },

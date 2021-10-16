@@ -66,6 +66,16 @@ export default {
 
 
 
-<style scoped>
+<style scoped lang="scss">
 @import "../node_modules/leaflet/dist/leaflet.css";
+
+
+@import "./src/assets/scss/style.scss";
+
+
 </style>
+
+
+<style scoped lang="scss">
+
+
