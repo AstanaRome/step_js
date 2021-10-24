@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainPage from '../components/MainPage'
-import Films from '../components/Films'
+import FilmsList from '../components/FilmsList'
+import ActorsList from '../components/ActorsList'
+import ShowFilm from '../components/ShowFilm'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,8 +16,19 @@ const routes = [
   {
     path: '/films',
     name: 'films',
-    component: Films,
+    component: FilmsList,
+  },
+  {
+    path: '/films/:id',
+    name: 'ShowFilm',
+    component: ShowFilm,
+  },
+  {
+    path: '/actors',
+    name: 'actors',
+    component: ActorsList,
   }
+
  
 ]
 
