@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MainPage from '../components/MainPage'
-import FilmsList from '../components/FilmsList'
-import ActorsList from '../components/ActorsList'
-import ShowFilm from '../components/ShowFilm'
-import ShowActor from '../components/ShowActor'
+import MainPage from '../views/MainPage'
+import FilmsList from '../views/FilmsList'
+import ActorsList from '../views/ActorsList'
+import ShowFilm from '../views/ShowFilm'
+import ShowActor from '../views/ShowActor'
+
+
+
 
 Vue.use(VueRouter)
 

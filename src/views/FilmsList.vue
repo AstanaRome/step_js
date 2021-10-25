@@ -1,32 +1,37 @@
 <template>
-  <div>
-    <div>
-      <div v-if="loading">Loading...</div>
+  <v-container>
+    <div v-if="loading">Loading...</div>
 
-      <div v-else-if="films">
-        <ul>
-          <li v-for="film in films" :key="film.id">
-            <router-link :to="{ name: 'ShowFilm', params: { id: film.id } }">
-              {{ film.original_title }}
-            </router-link>
-          </li>
-        </ul>
-
-        <pagination @page-changed="changePage" :current="page" :max="info" />
+    <div v-else-if="films">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <v-text-field v-model="name" label="name" />
+        <v-btn color="primary" @click="loadFilms">поиск</v-btn>
       </div>
+      <v-row>
+        <v-col v-for="film in films" :key="film.id">
+          <film-card :film="film"></film-card>
+        </v-col>
+      </v-row>
 
-      <div v-else>Server error</div>
+      <v-pagination
+        v-model="page"
+        :total-visible="10"
+        :length="info"
+      ></v-pagination>
     </div>
-  </div>
+
+    <div v-else>Server error</div>
+  </v-container>
 </template>
 
 <script>
 import http from "@/plugins/http";
-import Pagination from "./Pagination.vue";
+import FilmCard from "@/components/FilmCard";
 
 export default {
-  components: { Pagination },
+  components: { FilmCard },
   data: () => ({
+    name: "a",
     films: null,
     info: null,
     loading: false,
@@ -50,9 +55,8 @@ export default {
       http
         .get(`search/movie?page=` + this.page, {
           params: {
-            query: "черный ястреб",
+            query: this.name,
             api_key: "af492b73c1126de8c879a4e329dbb3f3",
-
             include_adult: false,
             language: "ru",
           },
@@ -66,10 +70,6 @@ export default {
         .finally(() => {
           this.loading = false;
         });
-    },
-    changePage(newPage) {
-      this.page = newPage;
-      console.log(this.page)     
     },
   },
 };
