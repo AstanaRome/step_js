@@ -8,8 +8,9 @@
       <div v-else-if="actors">
         <ul>
           <li v-for="actor in actors" :key="actor.id">
-            
+            <router-link :to="{ name: 'ShowActor', params: { id: actor.id } }">
               {{ actor.name }}
+            </router-link>
           </li>
         </ul>
       </div>

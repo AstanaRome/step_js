@@ -2,22 +2,19 @@
   <div>
     <div v-if="loading">Loading...</div>
 
-    <div v-else-if="film">
-      <h1>{{ film.original_title }}</h1>
-      <img v-if="film.poster_path" :src="img + film.poster_path" />
-
+    <div v-else-if="actor">
+      <h1>{{ actor.name }}</h1>
+      <img v-if="actor.profile_path" :src="img + actor.profile_path" />
       <ul>
-        <li>Жанр: {{ film.genres[0].name }}</li>
-        <li>Описание: {{ film.overview }}</li>
-       
-        <li v-for="actor in film.credits.cast" :key="actor.id">
-           
-           <router-link :to="{ name: 'ShowActor', params: { id: actor.id } }">
-                {{ actor.name }} 
-            </router-link>
-           
-          </li>
-          
+        <li>
+           {{ actor.biography}}
+        </li>
+
+        <li v-for="film in actor.credits.cast" :key="film.id">
+          <router-link :to="{ name: 'ShowFilm', params: { id: film.id } }">
+            {{ film.title }}
+          </router-link>
+        </li>
       </ul>
     </div>
 
@@ -31,12 +28,12 @@ import http from "@/plugins/http";
 export default {
   data: () => ({
     img: "https://image.tmdb.org/t/p/w185/",
-    film: null,
+    actor: null,
     loading: false,
   }),
 
   mounted() {
-    this.loadFilms();
+    this.loadPerson();
   },
 
   computed: {
@@ -45,11 +42,11 @@ export default {
     },
   },
   methods: {
-    loadFilms() {
+    loadPerson() {
       this.loading = true;
 
       http
-        .get(`movie/${this.id}`, {
+        .get(`person/${this.id}`, {
           params: {
             api_key: "af492b73c1126de8c879a4e329dbb3f3",
             include_adult: false,
@@ -58,8 +55,7 @@ export default {
           },
         })
         .then((response) => {
-          this.film = response.data; 
-             
+          this.actor = response.data;
         })
         .finally(() => {
           this.loading = false;

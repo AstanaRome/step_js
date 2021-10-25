@@ -12,11 +12,7 @@
           </li>
         </ul>
 
-        <pagination
-          @page-changed="changePage"
-          :current="page"
-          :max="films.total_pages"
-        />
+        <pagination @page-changed="changePage" :current="page" :max="info" />
       </div>
 
       <div v-else>Server error</div>
@@ -41,14 +37,20 @@ export default {
     this.loadFilms();
   },
 
+  watch: {
+    page() {
+      this.loadFilms();
+    },
+  },
+
   methods: {
     loadFilms() {
       this.loading = true;
 
       http
-        .get("search/movie", {
+        .get(`search/movie?page=` + this.page, {
           params: {
-            query: "а",
+            query: "черный ястреб",
             api_key: "af492b73c1126de8c879a4e329dbb3f3",
 
             include_adult: false,
@@ -56,8 +58,10 @@ export default {
           },
         })
         .then((response) => {
-          this.info = response.data.info;
+          const data = response.data;
+          this.info = data.total_pages;
           this.films = response.data.results;
+          console.log(this.info);
         })
         .finally(() => {
           this.loading = false;
@@ -65,7 +69,7 @@ export default {
     },
     changePage(newPage) {
       this.page = newPage;
-      this.loadFilms();
+      console.log(this.page)     
     },
   },
 };
