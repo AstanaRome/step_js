@@ -9,8 +9,8 @@
      </v-card-subtitle>
 
     <v-card-actions class="justify-space-between">
-      <v-btn flat color="green" @click="singleMovie(item.imdbID)">View</v-btn>
-      <v-btn flat color="green" @click="singleMovie(item.imdbID)">View</v-btn>
+      <v-btn  flat color="green" :to="{ name: 'ShowFilm', params: { id: film.id } }">Подробнее</v-btn>
+
     </v-card-actions>
   </v-card>
 </template>

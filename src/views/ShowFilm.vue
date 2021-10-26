@@ -1,28 +1,47 @@
 <template>
-  <div>
-    <div v-if="loading">Loading...</div>
+ <v-container v-if="loading">
+    <div class="text-xs-center">
+        <v-progress-circular
+          indeterminate
+          :size="150"
+          :width="8"
+          color="green">
+        </v-progress-circular>
+      </div>
+  </v-container>
 
-    <div v-else-if="film">
-      <h1>{{ film.original_title }}</h1>
-      <img v-if="film.poster_path" :src="img + film.poster_path" />
 
-      <ul>
-        <li>Жанр: {{ film.genres[0].name }}</li>
-        <li>Описание: {{ film.overview }}</li>
-       
-        <li v-for="actor in film.credits.cast" :key="actor.id">
-           
-           <router-link :to="{ name: 'ShowActor', params: { id: actor.id } }">
-                {{ actor.name }} 
-            </router-link>
-           
-          </li>
-          
-      </ul>
-    </div>
 
-    <div v-else>Not found</div>
-  </div>
+ <v-container v-else-if="film">
+    <v-layout wrap>
+      <v-flex xs12 mr-1 ml-1>
+        <v-card>
+          <v-img
+            :src="img + film.backdrop_path"
+            aspect-ratio="2"
+          ></v-img>
+          <v-card-title primary-title>
+            <div>
+              <h2>{{film.title}}</h2>
+              <p>{{ film.overview}} </p>
+              <h3 >Actors:</h3>{{film.credits.cast.orginal_name}}
+            
+               <p>Genre: {{film.genres[0].name}}</p>
+            </div>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn flat color="green" @click="back">back</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+ </v-container>
+
+
+
+
+
+  
 </template>
 
 <script>
@@ -30,9 +49,10 @@ import http from "@/plugins/http";
 
 export default {
   data: () => ({
-    img: "https://image.tmdb.org/t/p/w185/",
+    img: "https://image.tmdb.org/t/p/w780/",
     film: null,
     loading: false,
+    cast: null,
   }),
 
   mounted() {

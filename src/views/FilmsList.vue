@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading"></div>
 
     <div v-else-if="films">
       <div style="display: flex; align-items: center; gap: 10px">
@@ -65,7 +65,7 @@ export default {
           const data = response.data;
           this.info = data.total_pages;
           this.films = response.data.results;
-          console.log(this.info);
+  
         })
         .finally(() => {
           this.loading = false;
