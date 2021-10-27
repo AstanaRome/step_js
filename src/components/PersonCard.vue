@@ -9,8 +9,9 @@
      </v-card-subtitle>
 
     <v-card-actions class="justify-space-between">
-      <v-btn flat color="green" >View</v-btn>
-      <v-btn flat color="green" >View</v-btn>
+    <v-btn  flat color="green" :to="{ name: 'ShowActor', params: { id: actor.id } }">Подробнее</v-btn>
+
+
     </v-card-actions>
   </v-card>
 </template>
