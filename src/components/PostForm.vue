@@ -13,8 +13,6 @@ export default {
             post: {
                 title: '',
                 body: ''
-
-
             }
 
         }
@@ -22,16 +20,14 @@ export default {
 
     },
     methods: {
-        createPost = () => {
-            console.log(title);
-            const newPost = {
-                id: posts.value.length + 1,
-                title: title.value,
-                body: body.value,
-            };
-            posts.value.push(newPost);
-            body.value = '';
-            title.value = '';
+        createPost() {
+            console.log(this.post.title);
+            this.post.id = Date.now();
+            this.$emit('create', this.post, 'secondd', 'third')
+            this.post = {
+                title: '',
+                body: ''
+            }
         },
     }
 

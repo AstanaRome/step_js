@@ -14,19 +14,11 @@ const posts = ref([
 const title = ref('');
 const body = ref('');
 
-const createPost = () => {
-  console.log(title);
+const _createPost = (post, second, third) => {
+console.log('54545');
+//console.log(second);
+//console.log(third);
 
-  const newPost = {
-
-    id: posts.value.length + 1,
-    title: title.value,
-    body: body.value,
-  };
-  posts.value.push(newPost);
-
-  body.value = '';
-  title.value = '';
 };
 
 
@@ -35,7 +27,10 @@ const createPost = () => {
 <template>
   <div class="app">
     <post-form></post-form>
-    <post-list :posts="posts"></post-list>
+    <post-list 
+    :posts="posts"
+    @create = "_createPost"
+    ></post-list>
   </div>
 </template>
 
