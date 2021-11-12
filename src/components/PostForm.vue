@@ -14,16 +14,12 @@ export default {
                 title: '',
                 body: ''
             }
-
         }
-
-
     },
     methods: {
-        createPost() {
-            console.log(this.post.title);
+        createPost() {        
             this.post.id = Date.now();
-            this.$emit('create', this.post, 'secondd', 'third')
+            this.$emit('create', this.post)
             this.post = {
                 title: '',
                 body: ''

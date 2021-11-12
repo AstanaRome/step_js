@@ -15,10 +15,7 @@ const title = ref('');
 const body = ref('');
 
 const _createPost = (post, second, third) => {
-console.log('54545');
-//console.log(second);
-//console.log(third);
-
+posts.value.push(post);
 };
 
 
@@ -26,10 +23,12 @@ console.log('54545');
 
 <template>
   <div class="app">
-    <post-form></post-form>
+    <post-form
+    @create = _createPost
+    ></post-form>
     <post-list 
     :posts="posts"
-    @create = "_createPost"
+   
     ></post-list>
   </div>
 </template>
