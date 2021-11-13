@@ -1,8 +1,7 @@
 <script setup>
-import { ref } from 'vue'
-import PostForm from './components/PostForm.vue'
-import PostList from './components/PostList.vue'
-
+import { ref } from "vue";
+import PostForm from "./components/PostForm.vue";
+import PostList from "./components/PostList.vue";
 
 const posts = ref([
   { id: 1, title: "Javascript", body: "Описание поста" },
@@ -11,25 +10,20 @@ const posts = ref([
   { id: 4, title: "Javascript 4", body: "Описание поста 4" },
 ]);
 
-const title = ref('');
-const body = ref('');
-
-const _createPost = (post, second, third) => {
-posts.value.push(post);
+const _createPost = (post) => {
+  const newPost = {
+    id: post.id,
+    title: post.title,
+    body: post.body,
+  };
+  posts.value.push(newPost);
 };
-
-
 </script>
 
 <template>
   <div class="app">
-    <post-form
-    @create = _createPost
-    ></post-form>
-    <post-list 
-    :posts="posts"
-   
-    ></post-list>
+    <post-form @create="_createPost"></post-form>
+    <post-list :posts="posts"></post-list>
   </div>
 </template>
 
