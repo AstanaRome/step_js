@@ -1,26 +1,29 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Категории</h3>
+      <h3>{{'Categories'}}</h3>
     </div>
     <section>
-      <div class="row">
-       <CategoryCreate></CategoryCreate>
-
-        <CategoryEdit></CategoryEdit>
-      </div>
+        <CategoryCreate @created="addNewCategory"/>
     </section>
   </div>
 </template>
 
 <script>
 import CategoryCreate from '@/components/CategoryCreate'
-import CategoryEdit from '@/components/CategoryEdit'
 
 export default {
   name: 'categories',
+  data: () => ({
+    categories: []
+  }),
   components: {
-    CategoryCreate, CategoryEdit
+    CategoryCreate
+  },
+  methods: {
+    addNewCategory (category) {
+      this.categories.push(category)
+    }
   }
 }
 </script>

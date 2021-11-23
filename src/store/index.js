@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './auth'
+import categories from './categories'
+import info from './info'
+import record from './record'
 
 Vue.use(Vuex)
 
@@ -10,7 +13,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setError (state, error) {
-      state.error = null
+      state.error = error
     },
     clearError (state) {
       state.error = null
@@ -22,6 +25,6 @@ export default new Vuex.Store({
     error: s => s.error
   },
   modules: {
-    auth
+    auth, info, categories, record
   }
 })
